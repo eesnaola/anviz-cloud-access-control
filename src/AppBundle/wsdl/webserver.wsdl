@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:Webserverwsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" name="Webserver" targetNamespace="urn:Webserverwsdl">
+    <wsdl:message name="actionRegisterIn">
+        <wsdl:part name="data" type="xsd:string" />
+    </wsdl:message>
+    <wsdl:message name="actionRegisterOut">
+        <wsdl:part name="return" type="xsd:string" />
+    </wsdl:message>
+    <wsdl:message name="actionTransportIn">
+        <wsdl:part name="serial_number" type="xsd:string" />
+        <wsdl:part name="data" type="xsd:string" />
+    </wsdl:message>
+    <wsdl:message name="actionTransportOut">
+        <wsdl:part name="return" type="xsd:string" />
+    </wsdl:message>
+    <wsdl:message name="actionReportIn">
+        <wsdl:part name="serial_number" type="xsd:string" />
+        <wsdl:part name="data" type="xsd:string" />
+    </wsdl:message>
+    <wsdl:message name="actionReportOut">
+        <wsdl:part name="return" type="xsd:string" />
+    </wsdl:message>
+    <wsdl:portType name="WebserverPortType">
+        <wsdl:operation name="actionRegister">
+            <wsdl:documentation/>
+            <wsdl:input message="tns:actionRegisterIn" />
+            <wsdl:output message="tns:actionRegisterOut" />
+        </wsdl:operation>
+        <wsdl:operation name="actionTransport">
+            <wsdl:documentation/>
+            <wsdl:input message="tns:actionTransportIn" />
+            <wsdl:output message="tns:actionTransportOut" />
+        </wsdl:operation>
+        <wsdl:operation name="actionReport">
+            <wsdl:documentation/>
+            <wsdl:input message="tns:actionReportIn" />
+            <wsdl:output message="tns:actionReportOut" />
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="WebserverBinding" type="tns:WebserverPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="actionRegister">
+            <soap:operation soapAction="urn:Webserverwsdl#Webserver#actionRegister" style="rpc" />
+            <wsdl:input>
+                <soap:body use="encoded" namespace="urn:Webserverwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="encoded" namespace="urn:Webserverwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="actionTransport">
+            <soap:operation soapAction="urn:Webserverwsdl#Webserver#actionTransport" style="rpc" />
+            <wsdl:input>
+                <soap:body use="encoded" namespace="urn:Webserverwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="encoded" namespace="urn:Webserverwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="actionReport">
+            <soap:operation soapAction="urn:Webserverwsdl#Webserver#actionReport" style="rpc" />
+            <wsdl:input>
+                <soap:body use="encoded" namespace="urn:Webserverwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="encoded" namespace="urn:Webserverwsdl" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="WebserverService">
+        <wsdl:port name="WebserverPort" binding="tns:WebserverBinding">
+            <soap:address location="http://127.0.0.1:80/webserver.php" />
+        </wsdl:port>
+    </wsdl:service>
+</definitions>
